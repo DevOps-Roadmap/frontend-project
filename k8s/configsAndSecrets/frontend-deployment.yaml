@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment                                          # 1
+metadata:
+  name: coit-frontend
+  labels:
+    app: coit-frontend
+    runon: fargate
+spec:
+  selector:
+    matchLabels:
+      app: coit-frontend
+  replicas: 3                                             # 2
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate                                   # 3
+    rollingUpdate: 
+      maxUnavailable: 1                                   # 4
+      maxSurge: 1                                         # 5
+  template:
+    metadata:
+      labels:
+        runon: fargate
+        app: coit-frontend                                  # 6
+        app.kubernetes.io/name: coit-frontend
+    spec:
+      containers:
+        - image: basilvarghese/myapp-frontend:latest
+          imagePullPolicy: IfNotPresent                         # 7
+          name: coit-frontend
+          ports:
+            - containerPort: 80
+          env:
+            - name: DB_USER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: DB_USER_NAME
+                  optional: false # same as default; "mysecret" must exist
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: DB_PASSWORD
+                  optional: false # same as default; "mysecret" must exist
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: db-configs
+                  key: database_host
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: db-configs
+                  key: database_name

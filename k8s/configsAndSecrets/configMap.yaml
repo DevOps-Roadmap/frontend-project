@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-configs
+data:
+  database_host: 10.10.10.0
+  database_name: mydb
