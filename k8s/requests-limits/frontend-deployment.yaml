@@ -4,11 +4,12 @@ metadata:
   name: coit-frontend
   labels:
     app: coit-frontend
+    runon: fargate
 spec:
   selector:
     matchLabels:
       app: coit-frontend
-  replicas: 1                                             # 2
+  replicas: 3                                             # 2
   minReadySeconds: 15
   strategy:
     type: RollingUpdate                                   # 3
@@ -18,18 +19,23 @@ spec:
   template:
     metadata:
       labels:
+        runon: fargate
         app: coit-frontend                                  # 6
+        app.kubernetes.io/name: myapp-frontend
     spec:
-      volumes:
-        - name: datastore
-          persistentVolumeClaim:
-            claimName: coit-frontend-fast
       containers:
         - image: basilvarghese/myapp-frontend:latest
-          imagePullPolicy: IfNotPresent                         # 7
+          imagePullPolicy: Always                         # 7
           name: coit-frontend
           ports:
             - containerPort: 80
-          volumeMounts:
-            - mountPath: /var/lib/sql
-              name: datastore
+          env:
+            - name: DATABASE_NAME
+              value: mydb
+          resources:
+            requests:
+              cpu: 100m
+              memory: 150Mi
+            limits:
+              cpu: 100m
+              memory: 150Mi

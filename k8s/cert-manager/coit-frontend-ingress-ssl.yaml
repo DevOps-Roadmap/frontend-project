@@ -4,8 +4,13 @@ metadata:
   name: coit-frontend
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - frontend.coit.io
+    secretName:  frontend.coit.io
   rules:
   - host: frontend.coit.io
     http:
