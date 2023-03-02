@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- frontend-deployment.yaml
+- service-frontend-lb.yaml
+
+images:
+- name: basilvarghese/myapp-frontend
+  newTag: 1.0.0
