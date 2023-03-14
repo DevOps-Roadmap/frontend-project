@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../resources
+
+commonLabels:
+  app: frontend
+  owner: frontend-team
+  customer: bigb
+  location: mumbai
+
+images:
+- name: basilvarghese/myapp-frontend
+  newTag: latest
+
+namespace: dev
+
+replicas:
+- name: coit-frontend
+  count: 2
+
+namePrefix: customer1-
+nameSuffix: -dev
