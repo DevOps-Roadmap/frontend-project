@@ -11,49 +11,48 @@ pool:
 
 steps:
 - script: |
-    sudo apt-get update
-    sudo apt-get install -y npm
-displayName: 'Installing npm using apt-get'
+   sudo apt-get update
+   sudo apt-get install -y npm
+  displayName: 'Installing npm using apt-get'
 
 - script: |
-    npm audit || true
-displayName: 'scanning the dependencies'
+   npm audit || true
+  displayName: 'scanning the dependencies'
 
 - script: |
-    npm run test || true
-displayName: 'perform unit test'
+   npm run test || true
+  displayName: 'perform unit test'
 
 - script: |
-    sonar-scanner .\ || true
-displayName: 'review code'
+   sonar-scanner .\ || true
+  displayName: 'review code'
 
 - script: |
-    npm install
-    npm run build
-displayName: 'Get all dependencies and create a executable files'
+   npm install
+   npm run build
+  displayName: 'Get all dependencies and create a executable files'
 
 - script: |
-    sudo apt-get install wget apt-transport-https gnupg lsb-release
-    wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-    echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
-    sudo apt-get update
-    sudo apt-get install trivy
-displayName: 'Installing trivy'
+   sudo apt-get install wget apt-transport-https gnupg lsb-release
+   wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+   echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+   sudo apt-get update
+   sudo apt-get install trivy
+  displayName: 'Installing trivy'
 
 - script: |
-    trivy config Dockerfile
-displayName: 'review code'
+   trivy config Dockerfile
+  displayName: 'review code'
 
 - script: |
-    BASE_IMAGE=`grep FROM Dockerfile | awk '{print $2}'`
-    trivy image $BASE_IMAGE
-displayName: 'scanning the base image'
+   BASE_IMAGE=`grep FROM Dockerfile | awk '{print $2}'`
+   trivy image $BASE_IMAGE
+  displayName: 'scanning the base image'
 
 - script: |
-    trivy config K8s
-displayName: 'scanning the manisfest files'
+   trivy config K8s
+  displayName: 'scanning the manisfest files'
 
 - script: |
-    docker build -t incharagowda/frontend-project:1.0.1 -f Dockerfile
-displayName: 'Build the container image'
-
+   docker build -t incharagowda/frontend-project:1.0.1 -f Dockerfile
+  displayName: 'Build the container image'
