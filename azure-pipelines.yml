@@ -3,7 +3,7 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
+pr:
 - main
 
 pool:
@@ -17,20 +17,20 @@ steps:
 
 - script: |
    npm audit || true
-  displayName: 'scanning the dependencies'
+  displayName: 'check for vulnaribities'
 
 - script: |
-   npm run test || true
+   npm test || true
   displayName: 'perform unit test'
 
 - script: |
-   sonar-scanner .\ || true
+   sonar-scanner ./ || true
   displayName: 'review code'
 
 - script: |
    npm install
    npm run build
-  displayName: 'Get all dependencies and create a executable files'
+  displayName: 'npm install and build'
 
 - script: |
    sudo apt-get install wget apt-transport-https gnupg lsb-release
@@ -42,7 +42,7 @@ steps:
 
 - script: |
    trivy config Dockerfile
-  displayName: 'review code'
+  displayName: 'Scan the Dockerile for Security'
 
 - script: |
    BASE_IMAGE=`grep FROM Dockerfile | awk '{print $2}'`
@@ -54,5 +54,11 @@ steps:
   displayName: 'scanning the manisfest files'
 
 - script: |
-   docker build -t incharagowda/frontend-project:1.0.1 -f Dockerfile
+   sudo docker build -t incharagowda/frontend-project:1.0.1 . 
   displayName: 'Build the container image'
+
+- script: |
+   echo $(DOCKER_HUB_PASSWORD) | sudo docker login --username=$(DOCKER_HUB_USERNAME) --password-stdin
+   sudo docker push incharagowda/frontend-project:1.0.1
+  displayName: 'Login to registry and Push the image'
+  
