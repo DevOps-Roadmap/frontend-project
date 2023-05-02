@@ -7,13 +7,13 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: frontend.coit.io
+  - host: frontend.35.244.57.140.sslip.io
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: coit-frontend
+            name: coit-frontend-lb
             port:
               number: 80
