@@ -8,7 +8,7 @@ pipeline{
         }
         stage("Setup Env"){
             steps{
-                sh "echo Installing Apache on the machine"
+                sh "echo Installing Apache on the machine.."
             }
         }
         stage("Deploy"){
