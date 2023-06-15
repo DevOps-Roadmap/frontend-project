@@ -7,10 +7,10 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: frontend.35.244.57.140.sslip.io
+  - host: basil.com.34-100-224-46.sslip.io
     http:
       paths:
-      - path: /
+      - path: /frontend
         pathType: Prefix
         backend:
           service:
