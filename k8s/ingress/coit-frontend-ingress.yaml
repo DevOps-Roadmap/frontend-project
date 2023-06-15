@@ -10,17 +10,10 @@ spec:
   - host: basil.com.34-100-224-46.sslip.io
     http:
       paths:
-      - path: /frontend
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: coit-frontend-lb
-            port:
-              number: 80
-      - path: /api
-        pathType: Prefix
-        backend:
-          service:
-            name: coit-backend1-lb
             port:
               number: 80
