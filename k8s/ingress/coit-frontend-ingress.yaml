@@ -17,3 +17,10 @@ spec:
             name: coit-frontend-lb
             port:
               number: 80
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: coit-backend1-lb
+            port:
+              number: 80
