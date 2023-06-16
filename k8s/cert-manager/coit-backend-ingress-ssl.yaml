@@ -9,10 +9,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - backend.coit.io
-    secretName:  backend.coit.io
+    - api.basil.com.34.93.5.66.sslip.io
+    secretName:  api.basil.com.34.93.5.66.sslip.io
   rules:
-  - host: backend.coit.io
+  - host: api.basil.com.34.93.5.66.sslip.io
     http:
       paths:
       - path: /
