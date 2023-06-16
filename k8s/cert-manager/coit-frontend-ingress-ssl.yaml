@@ -9,16 +9,16 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - frontend.coit.io
-    secretName:  frontend.coit.io
+    - basil.com.34.93.5.66.sslip.io
+    secretName:  basil.com.34.93.5.66.sslip.io
   rules:
-  - host: frontend.coit.io
+  - host: basil.com.34.93.5.66.sslip.io
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: coit-frontend
+            name: coit-frontend-lb
             port:
               number: 80
