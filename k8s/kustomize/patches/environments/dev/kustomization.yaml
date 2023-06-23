@@ -24,6 +24,8 @@ patches:
           spec:
             containers:
               - name: coit-frontend
-                imagePullPolicy: Always      
+                imagePullPolicy: Always     
+                ports:
+                  - containerPort: 8080
     target:
       labelSelector: "app=coit-frontend"
