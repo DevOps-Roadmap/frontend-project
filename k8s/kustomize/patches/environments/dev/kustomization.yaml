@@ -24,6 +24,6 @@ patches:
           spec:
             containers:
               - name: coit-frontend
-                image: basilvarghese/coit-frontend:1.0.0      
+                imagePullPolicy: Always      
     target:
       labelSelector: "app=coit-frontend"
