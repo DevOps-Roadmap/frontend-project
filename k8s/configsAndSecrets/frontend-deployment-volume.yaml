@@ -28,8 +28,8 @@ spec:
           configMap:
             name: db-configs
         - name: mysecrets
-          Secret: 
-            name: db-secrets
+          secret: 
+            secretName: db-secrets
       containers:
         - image: basilvarghese/myapp-frontend:latest
           imagePullPolicy: IfNotPresent                         # 7
