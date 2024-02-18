@@ -32,7 +32,7 @@ steps:
   displayName: push to docker
   inputs:
     command: push
-    containerRegistry: azure
+    containerRegistry: $(dockerRegistryServiceConnection)
     repository: ajayjohn100/frontend-project
     tags: latest
 
