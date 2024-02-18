@@ -21,7 +21,7 @@ steps:
   displayName: 'npm install and build'
 
 - script: |
-    docker build -t ajuzajay/frontend-project:latest . -f Dockerfile
+    docker build -t ajayjohn100/frontend-project:latest . -f Dockerfile
   displayName: 'Build conainer image'
 
 - script: |
