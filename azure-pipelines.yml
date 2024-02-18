@@ -21,11 +21,11 @@ steps:
   displayName: 'npm install and build'
 
 - script: |
-    docker build -t ajuzajay/frontend-project:latest . -f dockerfile
+    docker build -t ajuzajay/frontend-project:latest . -f Dockerfile
   displayName: 'Build conainer image'
 
 - script: |
-    docker run -d ajuzajay/frontend-project:latest . -f dockerfile
+    docker run -d ajuzajay/frontend-project:latest . -f Dockerfile
   displayName: 'check the application is running or not'
 
   
