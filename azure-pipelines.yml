@@ -35,6 +35,7 @@ steps:
     containerRegistry: $(dockerRegistryServiceConnection)
     repository: ajayjohn100/frontend-project
     tags: latest
+    
 
 
   
