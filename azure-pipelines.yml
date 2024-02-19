@@ -28,13 +28,6 @@ steps:
     docker run -d ajayjohn100/frontend-project:latest . -f Dockerfile
   displayName: 'check the application is running or not'
 
-- task: Docker@2
-  displayName: push to docker
-  inputs:
-    command: push
-    containerRegistry: $(dockerRegistryServiceConnection)
-    repository: ajayjohn100/frontend-project
-    tags: latest
     
 
 
