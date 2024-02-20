@@ -23,3 +23,6 @@ steps:
 - script: |
     docker build -t ajayjohn100/frontend-project:latest . -f Dockerfile
   displayName: 'Build conainer image'
+-  script: |
+   displayName: Docker run
+     docker run -d ajayjohn100/frontend-project:latest
