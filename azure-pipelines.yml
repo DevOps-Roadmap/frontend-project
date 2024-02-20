@@ -20,6 +20,14 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
+- task: SonarQubeScannerCli@3
+  inputs:
+    connectedServiceName: 'sonarqube'
+    projectKey: 'ajayjohn'
+    projectName: 'ajayjohn'
+    projectVersion: '1.0'
+    sources: '.'
+
 - script: |
     docker build -t ajayjohn100/frontend-project:latest . -f Dockerfile
   displayName: 'Build conainer image'
@@ -27,6 +35,7 @@ steps:
 - script: |
     docker run -d ajayjohn100/frontend-project:latest . -f Dockerfile
   displayName: 'check the application is running or not'
+
 
     
 
