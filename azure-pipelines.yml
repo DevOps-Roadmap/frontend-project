@@ -20,11 +20,19 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-- script: |
-    npm install -g sonarqube-scanner
-    sonar-scanner
-  displayName: 'Run SonarCloud Analysis'
 
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: https://sonarcloud.io
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'ajay01_azuredevops'
+    cliProjectName: 'azuredevops'
+    cliSources: 'src'
+ 
+- script: 'sonar-scanner'
+  displayName: 'Run SonarCloud Analysis'
+  
 - script: |
     docker build -t ajayjohn100/frontend-project:latest . -f Dockerfile
   displayName: 'Build conainer image'
