@@ -10,9 +10,9 @@ pool:
   name: 'azureagent'
 
 steps:
-- task: NodeTool@0
+- task: UseNode@1
   inputs:
-    versionSpec: '10.x'
+    version: '10.x'
   displayName: 'Install Node.js'
 
 - script: |
