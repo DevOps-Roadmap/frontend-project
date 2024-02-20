@@ -7,7 +7,7 @@ pr:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  name: 'azureagent'
 
 steps:
 - task: NodeTool@0
