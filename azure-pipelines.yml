@@ -23,7 +23,7 @@ steps:
 
 - task: SonarQubePrepare@4
   inputs:
-    SonarQube: https://sonarcloud.io
+    SonarQube: sonarqube
     scannerMode: 'CLI'
     configMode: 'manual'
     cliProjectKey: 'ajay01_azuredevops'
