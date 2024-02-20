@@ -20,6 +20,10 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
+- script: |
+    npm install -g sonarqube-scanner
+    sonar-scanner
+  displayName: 'Run SonarCloud Analysis'
 
 - script: |
     docker build -t ajayjohn100/frontend-project:latest . -f Dockerfile
