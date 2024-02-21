@@ -26,3 +26,8 @@ steps:
 -  script: |
    displayName: Docker run
      docker run -d ajayjohn100/frontend-project:latest
+- task: Docker@2
+  inputs:
+    containerRegistry: 'dockerconnection'
+    repository: 'retailjob'
+    command: 'push'
