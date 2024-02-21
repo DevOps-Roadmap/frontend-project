@@ -29,5 +29,6 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'dockerconnection'
-    repository: 'ajayjohn100/frontend-project:latest'
+    repository: 'ajayjohn100/frontend-project'
     command: 'push'
+    tags: 'latest'
