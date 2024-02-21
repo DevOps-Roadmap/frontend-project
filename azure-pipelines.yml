@@ -29,5 +29,5 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'dockerconnection'
-    repository: 'retailjob'
+    repository: 'ajayjohn100/frontend-project:latest'
     command: 'push'
