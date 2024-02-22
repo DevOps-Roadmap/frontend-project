@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  imagename: 'ajayjohn100/frontend-project'  # Adjust this to your Docker image name
+
 steps:
 - task: NodeTool@0
   inputs:
@@ -26,10 +29,11 @@ steps:
 
 - script: |
     docker run -d $(imagename):$(Build.BuildId)
-    displayName: 'Docker run'
+  displayName: 'Docker run'
+
 - task: Docker@2
   inputs:
     containerRegistry: 'dockerconnection'
     repository: '$(imagename)'
     command: 'push'
-    tags: $(Build.BuildId)
+    tags: '$(Build.BuildId)'
