@@ -36,10 +36,11 @@ steps:
     command: 'push'
     tags: '$(Build.BuildId)'
 
-- task: KubernetesManifest@1
+- task: Kubernetes@1
   inputs:
-    action: 'deploy'
-    connectionType: 'kubernetesServiceConnection'
-    kubernetesServiceConnection: 'my-cluster'
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'my-cluster'
     namespace: 'default'
-    manifests: 'frontend-project/k8s/simple/'
+    command: 'apply'
+    arguments: 'k8s/simple'
+    
