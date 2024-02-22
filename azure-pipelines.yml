@@ -21,10 +21,11 @@ steps:
   displayName: 'npm install and build'
 
 - script: |
-  displayName: Docker Build
-    docker build -t $(imagename):$(Build.BuildId) . -f Dockerfile 
+    docker build -t $(imagename):$(Build.BuildId) . -f Dockerfile
+  displayName: 'Docker Build'
+
 - script: |
     docker run -d $(imagename):$(Build.BuildId)
-  displayName: Docker run
+  displayName: 'Docker run'
 
 
