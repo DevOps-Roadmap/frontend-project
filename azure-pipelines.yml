@@ -42,4 +42,4 @@ steps:
     connectionType: 'kubernetesServiceConnection'
     kubernetesServiceConnection: 'my-cluster'
     namespace: 'default'
-    manifests: 'k8s /simple/'
+    manifests: 'frontend-project/k8s/simple/'
