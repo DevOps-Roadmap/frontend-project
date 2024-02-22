@@ -36,12 +36,14 @@ steps:
     tags: '$(Build.BuildId)'
 
 - script: |
+    git checkout -b main
     sed -i 's|ajayjohn100/frontend-project|ajayjohn100/frontend-project:$(Build.BuildId)|g' k8s/simple/frontent-deployment.yaml
     git config --global user.email "ajay95264@gmail.com"
     git config --global user.name "ajuzajay"
     git add .
     git commit -m "change image"
-    git push origin main 
+    git push origin main
+
 
 - task: Kubernetes@1
   inputs:
