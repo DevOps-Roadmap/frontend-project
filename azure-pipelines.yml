@@ -42,5 +42,5 @@ steps:
     kubernetesServiceEndpoint: 'my-cluster'
     namespace: 'default'
     command: 'apply'
-    arguments: 'k8s/simple'
+    arguments: -f 'k8s/simple'
     
