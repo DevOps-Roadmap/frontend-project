@@ -32,3 +32,4 @@ spec:
           env:
             - name: DATABASE_NAME
               value: mydb
+              
