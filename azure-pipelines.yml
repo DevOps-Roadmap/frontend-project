@@ -42,7 +42,9 @@ steps:
     git config --global user.name "ajuzajay"
     git add .
     git commit -m "change image"
+    git remote -v  # Log the remote repository details
     git push origin main
+
 
 
 - task: Kubernetes@1
