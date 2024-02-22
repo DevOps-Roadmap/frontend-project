@@ -9,7 +9,6 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-
 steps:
 - task: NodeTool@0
   inputs:
@@ -36,6 +35,12 @@ steps:
     command: 'push'
     tags: '$(Build.BuildId)'
 
+- script: |
+    sed -i 's|ajayjohn100/frontend-project|ajayjohn100/frontend-project:$(Build.BuildId)|g' k8s/simple/frontent-deployment.yaml
+    git add .
+    git commit -m "chnage image"
+    git push origin main 
+
 - task: Kubernetes@1
   inputs:
     connectionType: 'Kubernetes Service Connection'
@@ -43,4 +48,3 @@ steps:
     namespace: 'default'
     command: 'apply'
     arguments: '-f k8s/simple'
-    
