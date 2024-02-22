@@ -35,3 +35,11 @@ steps:
     repository: '$(imagename)'
     command: 'push'
     tags: '$(Build.BuildId)'
+
+- task: KubernetesManifest@1
+  inputs:
+    action: 'deploy'
+    connectionType: 'kubernetesServiceConnection'
+    kubernetesServiceConnection: 'my-cluster'
+    namespace: 'default'
+    manifests: 'k8s /simple/'
