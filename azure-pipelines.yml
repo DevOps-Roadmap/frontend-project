@@ -25,7 +25,7 @@ steps:
   displayName: 'Docker Build'
 
 - script: |
-    docker run -d - task: Docker@2
+    docker run -d $(imagename):$(Build.BuildId)
     displayName: 'Docker run'
 - task: Docker@2
   inputs:
