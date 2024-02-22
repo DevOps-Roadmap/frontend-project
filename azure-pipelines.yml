@@ -9,8 +9,6 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-variables:
-  imagename: 'ajayjohn100/frontend-project'  # Adjust this to your Docker image name
 
 steps:
 - task: NodeTool@0
